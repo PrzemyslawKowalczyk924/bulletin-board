@@ -1,0 +1,28 @@
+@import './settings.scss';
+
+.component {
+  padding: $base-size;
+}
+
+.box {
+  margin-top: 24px;
+}
+
+.title {
+  padding: 16px 0;
+  text-align: center;
+  font-weight: 800;
+}
+
+.paper {
+  padding: 0 8px 24px 8px;
+}
+
+.container {
+  height: 300px;
+  padding-bottom: 24px;
+}
+
+.button {
+  padding: 5px;
+}
