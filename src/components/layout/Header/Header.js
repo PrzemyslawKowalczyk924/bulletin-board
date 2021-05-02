@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {NavLink, Link} from 'react-router-dom';
 import clsx from 'clsx';
@@ -10,29 +10,41 @@ import styles from './Header.module.scss';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Icon from '../../common/Icon/Icon';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <Grid>
-      <Row between="md" middle="xs">
-        <Col md={3} lg={2}>
-          <Link to='/'>
-            <div className={styles.logo}>
-              <Icon name='thumbtack' />
-              <span className={styles.name}>Bulletin</span>
-            </div>
-          </Link>
-        </Col>
-        <Col md={6}>
-          <nav>
-            <NavLink to='/' activeClassName='active'>My Post&apos;s</NavLink>
-            <NavLink to='/' activeClassName='active'>Logout</NavLink>
-            <NavLink to='/auth/google' activeClassName='active'>Login with Google</NavLink>
-          </nav>
-        </Col>
-      </Row>
-    </Grid>
-  </div>
-);
+const Component = ({className, children}) => {
+  /* state = {
+    visible: true
+  } */
+  /* props = {
+
+  } */
+  
+  const [userOnline, setUserOnline] = useState(false);
+
+  return (
+    <div className={clsx(className, styles.root)}>
+      <Grid>
+        <Row between="md" middle="xs">
+          <Col md={3} lg={2}>
+            <Link to='/'>
+              <div className={styles.logo}>
+                <Icon name='thumbtack' />
+                <span className={styles.name}>Bulletin</span>
+              </div>
+            </Link>
+          </Col>
+          <Col md={6}>
+            <nav>
+              {userOnline ? <NavLink to='/post' activeClassName='active'>My Post&apos;s</NavLink> : null }
+              {userOnline ? <NavLink to='/post' activeClassName='active' onClick={() => setUserOnline(false)}>Logout</NavLink> : null }
+              {!userOnline ? <NavLink to='/auth/google' activeClassName='active' onClick={() => setUserOnline(true)}>Login with Google</NavLink> : null }
+              {/* {state.visible ? <NavLink to='/post/add' activeClassName='active' onClick={() => setUserOnline(true)}>Testing</NavLink> : null } */}
+            </nav>
+          </Col>
+        </Row>
+      </Grid>
+    </div>
+  );  
+};
 
 Component.propTypes = {
   children: PropTypes.node,
