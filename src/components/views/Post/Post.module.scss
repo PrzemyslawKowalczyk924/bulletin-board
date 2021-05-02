@@ -1,4 +1,15 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  
+  .flag {
+    width: 100px;
+    max-width: 100px;
+  }
+  
+  .intro {
+    margin: 0 0 ($base-size * 3) 0;
+  }
+}
+
+
