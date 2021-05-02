@@ -10,8 +10,14 @@ import styles from './Header.module.scss';
 
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
-    <h2>Header</h2>
-    {children}
+    <h2>Bulletin Board</h2>
+    <section className="index-page">
+      <p>Please authorize before using this site</p>
+
+      <a className="loginBtn loginBtn--google" href="/auth/google">
+        Login with Google
+      </a>
+    </section>
   </div>
 );
 
