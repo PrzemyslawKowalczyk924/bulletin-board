@@ -1,5 +1,19 @@
 /* selectors */
 export const getAll = ({posts}) => posts.data;
+export const getPostById = ({ posts }, postId) => {posts.data.filter(post => post.id === postId)}; 
+//console.log(getPostById());
+/* export const getPostById = ({posts}, postId) => {
+  const filtered = posts.data.filter(post => post.id === postId);
+
+  // TODO - filter posts by postId
+
+  //console.log('filtering posts by postId:', postId, filtered);
+  //return filtered.length ? filtered[0] : {error: true}, console.log(posts);
+}; */
+
+/* export const getPostById = ({ posts }, id) => {
+  return posts.data.filter((post) => post.id === id)[0], console.log(post);
+}; */
 
 /* action name creator */
 const reducerName = 'posts';
