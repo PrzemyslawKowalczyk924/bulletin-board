@@ -35,7 +35,6 @@ const Component = ({className, children}) => (
             <List variant='light'>
               <ListItem title={`<strong>Duration:</strong> 11 days`} icon='calendar-alt' />
               <TripPrice icon='money-bill-wave' cost={'100'}/>
-              {/*<ListItem title={`<strong>Price:</strong> from ${cost}`} icon='money-bill-wave' />*/}
             </List>
           </Col>
         </Row>

@@ -1,7 +1,6 @@
 export const initialState = {
   user: {
-    isOnline: true,
-    isOffline: false,
+    status: false,
     email: 'johndoe@example.com',
   },
   posts: {

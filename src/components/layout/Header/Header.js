@@ -1,27 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {NavLink, Link} from 'react-router-dom';
-import clsx from 'clsx';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { connect } from 'react-redux';
+import { getUserInfo, setUserOnline, setUserOffline } from '../../../redux/userRedux.js';
 
 import styles from './Header.module.scss';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Icon from '../../common/Icon/Icon';
 
-const Component = ({className, children}) => {
-  /* state = {
-    visible: true
-  } */
-  /* props = {
-
-  } */
-  
-  const [userOnline, setUserOnline] = useState(false);
+const Component = ({user, setOnline, setOffline}) => {
 
   return (
-    <div className={clsx(className, styles.root)}>
+    <div className={styles.root}>
       <Grid>
         <Row between="md" middle="xs">
           <Col md={3} lg={2}>
@@ -34,10 +25,9 @@ const Component = ({className, children}) => {
           </Col>
           <Col md={6}>
             <nav>
-              {userOnline ? <NavLink to='/post' activeClassName='active'>My Post&apos;s</NavLink> : null }
-              {userOnline ? <NavLink to='/post' activeClassName='active' onClick={() => setUserOnline(false)}>Logout</NavLink> : null }
-              {!userOnline ? <NavLink to='/auth/google' activeClassName='active' onClick={() => setUserOnline(true)}>Login with Google</NavLink> : null }
-              {/* {state.visible ? <NavLink to='/post/add' activeClassName='active' onClick={() => setUserOnline(true)}>Testing</NavLink> : null } */}
+              {user.status ? <NavLink to='/post' activeClassName='active'>My Post&apos;s</NavLink> : null }
+              {user.status ? <NavLink to='/post' activeClassName='active' onClick={() => setOffline(false)}>Logout</NavLink> : null }
+              {!user.status ? <NavLink to='/auth/google' activeClassName='active' onClick={() => setOnline(true)}>Login with Google</NavLink> : null }
             </nav>
           </Col>
         </Row>
@@ -47,22 +37,24 @@ const Component = ({className, children}) => {
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
+  user: PropTypes.object,
+  setOnline: PropTypes.func,
+  setOffline: PropTypes.func,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  user: getUserInfo(state),
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  setOnline: () => dispatch(setUserOnline()),
+  setOffline: () => dispatch(setUserOffline()),
+});
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as Header,
-  // Container as Header,
+  //Component as Header,
+  Container as Header,
   Component as HeaderComponent,
 };
