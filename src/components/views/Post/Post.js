@@ -3,12 +3,9 @@ import PropTypes from 'prop-types';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import HTMLParser from 'react-html-parser';
 
-import { connect } from 'react-redux';
-import { getPostById } from '../../../redux/postsRedux';
-
 import styles from './Post.module.scss';
 
-//import PageTitle from '../../common/PageTitle/PageTitle';
+import PageTitle from '../../common/PageTitle/PageTitle';
 import DetailsBox from '../../common/DetailsBox/DetailsBox';
 import DetailsImage from '../../common/DetailsImage/DetailsImage';
 import SideImage from '../../common/SideImage/SideImage';
@@ -16,12 +13,12 @@ import List from '../../common/List/List';
 import ListItem from '../../common/ListItem/ListItem';
 import TripPrice from '../../features/TripPrice/TripPrice';
 
-const Component = ({ id, text, title }) => {
+const Post = ({ text }) => {
 
   return (
     <div className={styles.root}>
       <Grid>
-        <h1>{text}</h1>
+        <PageTitle text={text} />
       </Grid>
       <DetailsBox>
         <DetailsImage>
@@ -46,32 +43,8 @@ const Component = ({ id, text, title }) => {
   );
 };
 
-Component.propTypes = {
-  post: PropTypes.array,
-  children: PropTypes.node,
-  className: PropTypes.string,
+Post.propTypes = {
+  text: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
-const mapStateToProps = (state, props) => ({
-  ...getPostById(state, props.match.params.id)
-});
-
-const Container = connect(mapStateToProps)(Component);
-
-export {
-  //Component as Post,
-  Container as Post,
-  Component as PostComponent,
-};
-
-//export default Post;
+export default Post;
