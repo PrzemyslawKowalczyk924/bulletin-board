@@ -1,4 +1,26 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  background: $color-dark;
+  
+  .textField {
+    margin: 5px;
+    background-color: $color-dark;
+    color: $color-light;
+    
+    label {
+      color: $color-light;
+    }
+    
+    div {
+      color: $color-light;
+    }
+
+  }
+
+  .intro {
+    display: flex;
+    margin: 0 0 ($base-size * 2) 0;
+    max-width: 446px;
+  }
+}
