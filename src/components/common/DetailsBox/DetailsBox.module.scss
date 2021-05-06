@@ -4,7 +4,7 @@
   position: relative;
   padding: ($base-size * 5) 0;
   margin-bottom: ($base-size * 3);
-  background: lighten($color-dark, 70%);
+  background: $color-darkness;
   &.small {
     height: 200px;
     margin-bottom: 0;

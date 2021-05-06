@@ -13,7 +13,9 @@ import List from '../../common/List/List';
 import ListItem from '../../common/ListItem/ListItem';
 import TripPrice from '../../features/TripPrice/TripPrice';
 
-const Post = ({ text }) => {
+const Post = ({ 
+  text, source, intro, title, iconCalendar, iconMoney, iconStatus, iconEdit,  
+  iconEmail, cost, status, dateOfPublication, dateOfActualizaction, email }) => {
 
   return (
     <div className={styles.root}>
@@ -22,17 +24,20 @@ const Post = ({ text }) => {
       </Grid>
       <DetailsBox>
         <DetailsImage>
-          <SideImage source={'https://images.unsplash.com/photo-1619441688769-be34ecf157d3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'} />
+          <SideImage source={source} />
         </DetailsImage>
         <Grid>
           <Row>
             <Col md={12} lg={4}>
               <div className={styles.intro}>
-                {HTMLParser('intro')}
+                {HTMLParser(intro)}
               </div>
               <List variant='light'>
-                <ListItem title={`<strong>Duration:</strong> 11 days`} icon='calendar-alt' />
-                <TripPrice icon='money-bill-wave' cost={'100'}/>
+                <ListItem title={title} icon={iconCalendar} dateOfPublication={dateOfPublication} />
+                <ListItem title={'<strong>Last update:</strong>'} icon={iconEdit} dateOfActualizaction={dateOfActualizaction} />
+                <ListItem title={status} icon={iconStatus} />
+                <ListItem title={email} icon={iconEmail} />
+                <TripPrice icon={iconMoney} cost={cost}/>
               </List>
             </Col>
           </Row>
@@ -45,6 +50,7 @@ const Post = ({ text }) => {
 
 Post.propTypes = {
   text: PropTypes.string,
+  cost: PropTypes.number,
 };
 
 export default Post;

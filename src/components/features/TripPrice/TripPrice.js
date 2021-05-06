@@ -16,7 +16,7 @@ const TripPrice = ({icon, cost}) => {
 
 TripPrice.propTypes = {
   icon: PropTypes.string,
-  cost: PropTypes.string,
+  cost: PropTypes.number,
 };
   
 export default TripPrice;

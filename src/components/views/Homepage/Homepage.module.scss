@@ -1,4 +1,21 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container {
+  max-width: 33.33333333333333%;
+}
+
+.paper {
+  padding: 5px;
+  text-align: center;
+  color: $color-primary;
+  background-color: transparent;
+  width: 33.33333333333333%;
+  flex: 0 0 33.33333333333333%;
+  position: relative;
+}
