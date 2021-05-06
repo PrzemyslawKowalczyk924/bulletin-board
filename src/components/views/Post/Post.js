@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import HTMLParser from 'react-html-parser';
+import {Link} from 'react-router-dom';
 
 import styles from './Post.module.scss';
 
@@ -12,9 +13,10 @@ import SideImage from '../../common/SideImage/SideImage';
 import List from '../../common/List/List';
 import ListItem from '../../common/ListItem/ListItem';
 import TripPrice from '../../features/TripPrice/TripPrice';
+import Icon from '../../common/Icon/Icon';
 
 const Post = ({ 
-  text, source, intro, title, iconCalendar, iconMoney, iconStatus, iconEdit,  
+  id, text, source, intro, title, iconCalendar, iconMoney, iconStatus, iconEdit,  
   iconEmail, cost, status, dateOfPublication, dateOfActualizaction, email }) => {
 
   return (
@@ -28,6 +30,9 @@ const Post = ({
         </DetailsImage>
         <Grid>
           <Row>
+            <Link to={`/post/${id}/edit`} className={styles.link}>
+              <Icon name={'cog'}/>
+            </Link>
             <Col md={12} lg={4}>
               <div className={styles.intro}>
                 {HTMLParser(intro)}
