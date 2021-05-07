@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-/* import PropTypes from 'prop-types'; */
+import PropTypes from 'prop-types';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import shortid from 'shortid';
 
@@ -18,7 +18,7 @@ import IconButton from '@material-ui/core/IconButton';
 const PostAdd = ({addPost}) => {
 
   const handleSubmit = (event) => {
-    //event.preventDefault();
+    event.preventDefault();
 
     let post = {
       id: shortid(),
@@ -89,6 +89,7 @@ const PostAdd = ({addPost}) => {
 };
 
 PostAdd.propTypes = {
+  addPost: PropTypes.func,
 };
 
 export default PostAdd;

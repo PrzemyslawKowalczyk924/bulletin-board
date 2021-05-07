@@ -12,23 +12,27 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
-const POST_ADD = createActionName('POST_ADD');
+const ADD_POST = createActionName('ADD_POST');
+const EDIT_POST = createActionName('EDIT_POST');
+const DELETE_POST = createActionName('DELETE_POST');
 
 /* action creators */
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
-export const addPost = payload => ({ payload, type: POST_ADD });
+export const addPost = payload => ({ payload, type: ADD_POST });
+export const editPost = payload => ({ payload, type: EDIT_POST });
+export const deletePost = payload => ({ payload, type: DELETE_POST });
 
 /* thunk creators */
 
 export const addPostRequest = (post) => {
-  return(dispatch) => {
+  return (dispatch) => {
    /*  axios.post('http://localhost:3000/', { post })
     .then(response => {
       console.log(response);
       dispatch({
-        type: 'POST_ADD',
+        type: 'ADD_POST',
         payload: response.data
       })
     })
@@ -39,12 +43,12 @@ export const addPostRequest = (post) => {
   }
 }
 
-/* export const addPostRequest = (post) => {
-  return async dispatch => {
+export const EditPostRequest = (post) => {
+  return (dispatch) => {
 
-    dispatch(fet)
+    dispatch(editPost(post));
   }
-} */
+}
 
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {
@@ -77,11 +81,30 @@ export const reducer = (statePart = [], action = {}) => {
         },
       };
     }
-    case POST_ADD: {
-      const posts = statePart.posts.concat(action.payload);
+    case ADD_POST: {
+      /* const posts = statePart.posts.concat(action.payload);
       return {
         ...statePart, posts
-      } 
+      }  */
+      return {
+        ...statePart,
+        data: [
+          ...statePart.data,
+          action.payload,
+        ],
+      };
+      //return [...statePart, action.payload]
+    }
+    case EDIT_POST: {
+      return statePart.data.map(element => {
+        if (element.id !== action.payload.id) {
+          return element;
+        }
+
+        const {...statePart} = action.payload;
+
+        return ({...statePart})
+      });
     }
     default:
       return statePart;

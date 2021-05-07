@@ -16,7 +16,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 
 
-const PostEdit = ({addPost}) => {
+const PostEdit = ({editPost}) => {
 
   
 
@@ -37,7 +37,7 @@ const PostEdit = ({addPost}) => {
       town: townInput,   
       phone: phoneInput,
     }
-    addPost(post);
+    editPost(post);
     console.log('warrning', event);
   }
 
