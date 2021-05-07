@@ -1,8 +1,8 @@
-import axios from 'axios';
+//import axios from 'axios';
 
 /* selectors */
 export const getAll = ({posts}) => posts.data;
-export const getPostById = ({ posts }, postId) => posts.data.filter(post => post.id === postId)[0]; 
+export const getPostById = ({ posts }, postId) => posts.data.filter(post => post.id === postId)[0];
 
 /* action name creator */
 const reducerName = 'posts';
@@ -24,7 +24,7 @@ export const addPost = payload => ({ payload, type: POST_ADD });
 
 export const addPostRequest = (post) => {
   return(dispatch) => {
-    axios.post('http://localhost:3000/', { post })
+   /*  axios.post('http://localhost:3000/', { post })
     .then(response => {
       console.log(response);
       dispatch({
@@ -34,7 +34,8 @@ export const addPostRequest = (post) => {
     })
     .catch(error => {
       console.log(error);
-    });
+    }); */
+    dispatch(addPost(post));
   }
 }
 

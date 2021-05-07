@@ -16,8 +16,7 @@ import TripPrice from '../../features/TripPrice/TripPrice';
 import Icon from '../../common/Icon/Icon';
 
 const Post = ({ 
-  id, text, source, intro, title, iconCalendar, iconMoney, iconStatus, iconEdit,  
-  iconEmail, cost, status, dateOfPublication, dateOfActualizaction, email }) => {
+  id, text, source, intro, title, name, cost, status, dateOfPublication, dateOfActualizaction, email }) => {
 
   return (
     <div className={styles.root}>
@@ -38,11 +37,12 @@ const Post = ({
                 {HTMLParser(intro)}
               </div>
               <List variant='light'>
-                <ListItem title={title} icon={iconCalendar} dateOfPublication={dateOfPublication} />
-                <ListItem title={'<strong>Last update:</strong>'} icon={iconEdit} dateOfActualizaction={dateOfActualizaction} />
-                <ListItem title={status} icon={iconStatus} />
-                <ListItem title={email} icon={iconEmail} />
-                <TripPrice icon={iconMoney} cost={cost}/>
+                <ListItem title={title} icon={'calendar-alt'} dateOfPublication={dateOfPublication} />
+                <ListItem title={'<strong>Last update:</strong>'} icon={'edit'} dateOfActualizaction={dateOfActualizaction} />
+                <ListItem title={'<strong>Name:</strong>'} icon={'user'} dateOfActualizaction={dateOfActualizaction} />
+                <ListItem title={status} icon={'spinner'} />
+                <ListItem title={email} icon={'envelope-square'} />
+                <TripPrice icon={'money-bill-wave'} cost={cost}/>
               </List>
             </Col>
           </Row>
