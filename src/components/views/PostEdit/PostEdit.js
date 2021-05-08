@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 /* import PropTypes from 'prop-types'; */
 import {Grid, Row, Col} from 'react-flexbox-grid';
 
-import shortid from 'shortid';
-
 import PageTitle from '../../common/PageTitle/PageTitle';
 import DetailsBox from '../../common/DetailsBox/DetailsBox';
 import DetailsImage from '../../common/DetailsImage/DetailsImage';
@@ -14,12 +12,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
-import { AlternateEmailRounded, ThumbDownRounded } from '@material-ui/icons';
 
-
-const PostEdit = ({editPost, id, text, source, intro, title, name, cost, phone, town, status, dateOfPublication, dateOfActualizaction, email}) => {
+const PostEdit = ({editPost, id, text, source, intro, name, cost, phone, town, status, dateOfPublication, dateOfActualizaction, email}) => {
 //debugger;
-  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -55,7 +50,7 @@ const PostEdit = ({editPost, id, text, source, intro, title, name, cost, phone, 
     <div className={styles.root}>
       <form className={styles.root} noValidate autoComplete="off" onSubmit={handleSubmit} >
         <Grid>
-          <PageTitle text={'Add New Post'} />
+          <PageTitle text={'Edit Your Post'} />
           <div>
           </div>
         </Grid>
