@@ -17,16 +17,16 @@ import ListItem from '../../common/ListItem/ListItem';
 import Icon from '../../common/Icon/Icon';
 
 const Post = ({ 
-  id, user, text, source, intro, title, name, cost, town, status, phone, dateOfPublication, dateOfActualizaction, email }) => {
+  id, user, title, photo, text, author, price, location, status, phone, created, updated, email }) => {
 
   return (
     <div className={styles.root}>
       <Grid>
-        <PageTitle text={text} />
+        <PageTitle text={title} />
       </Grid>
       <DetailsBox>
         <DetailsImage>
-          <SideImage source={source} />
+          <SideImage source={photo} />
         </DetailsImage>
         <Grid>
           <Row>
@@ -35,17 +35,17 @@ const Post = ({
             </Link> : null}
             <Col md={12} lg={4}>
               <div className={styles.intro}>
-                {HTMLParser(intro)}
+                {HTMLParser(text)}
               </div>
               <List variant='light'>
-                <ListItem title={title} icon={'calendar-alt'} dateOfPublication={dateOfPublication} />
-                <ListItem title={'<strong>Last update:</strong>'} icon={'edit'} dateOfActualizaction={dateOfActualizaction} />
-                <ListItem title={'<strong>Name:</strong>' + '  ' + name} icon={'user'} />
+                <ListItem title={'<strong>Published:</strong>'} icon={'calendar-alt'} created={created} />
+                <ListItem title={'<strong>Last update:</strong>'} icon={'edit'} updated={updated} />
+                <ListItem title={'<strong>Author:</strong>' + '  ' + author} icon={'user'} />
                 <ListItem title={status} icon={'spinner'} />
                 <ListItem title={email} icon={'envelope-square'} />
-                <ListItem title={'Country' + ' ' + town} icon={'globe-europe'} />
+                <ListItem title={'Country' + ' ' + location} icon={'globe-europe'} />
                 <ListItem title={'Phone' + ' ' + phone} icon={'phone'} />
-                <TripPrice icon={'money-bill-wave'} cost={cost}/>
+                <TripPrice icon={'money-bill-wave'} cost={price}/>
               </List>
             </Col>
           </Row>
@@ -56,8 +56,8 @@ const Post = ({
 };
 
 Post.propTypes = {
-  text: PropTypes.string,
-  cost: PropTypes.number,
+  title: PropTypes.string,
+  price: PropTypes.number,
   user: PropTypes.object,
 };
 

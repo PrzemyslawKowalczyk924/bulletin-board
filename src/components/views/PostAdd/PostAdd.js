@@ -22,28 +22,28 @@ const PostAdd = ({addPost}) => {
 
     let post = {
       id: shortid(),
+      title: titleInput,
+      photo: photoInput,
       text: textInput,
-      source: sourceInput,
-      intro: introInput,
-      cost: costInput,
+      price: priceInput,
      /*  status: ,
-      dateOfPublication: ,
-      dateOfActualizaction: , */
+      created: ,
+      updated: , */
       email: emailInput,
-      name: nameInput,
-      town: townInput,   
+      author: authorInput,
+      location: locationInput,   
       phone: phoneInput,
     }
     addPost(post);
     console.log('warrning', event);
   }
 
+  const [titleInput, setTitleInput] = useState('');
+  const [photoInput, setPhotoInput] = useState('');
   const [textInput, setTextInput] = useState('');
-  const [sourceInput, setSourceInput] = useState('');
-  const [introInput, setIntroInput] = useState('');
-  const [costInput, setCostInput] = useState('');
-  const [townInput, setTownInput] = useState('');
-  const [nameInput, setNameInput] = useState('');
+  const [priceInput, setPriceInput] = useState('');
+  const [locationInput, setLocationInput] = useState('');
+  const [authorInput, setAuthorInput] = useState('');
   const [phoneInput, setPhoneInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
   
@@ -57,7 +57,7 @@ const PostAdd = ({addPost}) => {
         </Grid>
         <DetailsBox>
           <DetailsImage>
-            <input accept="image/*" className={styles.input} id="icon-button-file" type="file" value={sourceInput} onChange={(event) => setSourceInput(event.target.value)} />
+            <input accept="image/*" className={styles.input} id="icon-button-file" type="file" value={photoInput} onChange={(event) => setPhotoInput(event.target.value)} />
             <label htmlFor="icon-button-file">
               <IconButton color="primary" aria-label="upload picture" component="span">
                 <PhotoCamera />
@@ -68,14 +68,14 @@ const PostAdd = ({addPost}) => {
           <Grid>
             <Row>
               <Col md={12} lg={6}>
-                  <TextField className={styles.textField} id="outlined-basic" label="Main title" variant="outlined" type="text" value={textInput} onChange={(event) => setTextInput(event.target.value)}/>
+                  <TextField className={styles.textField} id="outlined-basic" label="Main title" variant="outlined" type="text" value={titleInput} onChange={(event) => setTitleInput(event.target.value)}/>
                 <div className={styles.intro}>
-                  <TextField className={styles.description} id="outlined-multiline-static" label="Description" variant="outlined" multiline rows={5}  type="text" value={introInput} onChange={(event) => setIntroInput(event.target.value)}/>
+                  <TextField className={styles.description} id="outlined-multiline-static" label="Description" variant="outlined" multiline rows={5}  type="text" value={textInput} onChange={(event) => setTextInput(event.target.value)}/>
                 </div>
-                  <TextField className={styles.textField} id="outlined-basic" label="Name" variant="outlined" type="text" value={nameInput} onChange={(event) => setNameInput(event.target.value)}/>
+                  <TextField className={styles.textField} id="outlined-basic" label="Author" variant="outlined" type="text" value={authorInput} onChange={(event) => setAuthorInput(event.target.value)}/>
                   <TextField className={styles.textField} id="outlined-basic" label="Email" variant="outlined" type="email" value ={emailInput} onChange={(event) => setEmailInput(event.target.value)}/>
-                  <TextField className={styles.textField} id="outlined-basic" label="Town" variant="outlined" type="text" value={townInput} onChange={(event) => setTownInput(event.target.value)}/>
-                  <TextField className={styles.textField} id="outlined-basic" label="Price" variant="outlined" type="number" value={costInput} onChange={(event) => setCostInput(event.target.value)}/>
+                  <TextField className={styles.textField} id="outlined-basic" label="Location" variant="outlined" type="text" value={locationInput} onChange={(event) => setLocationInput(event.target.value)}/>
+                  <TextField className={styles.textField} id="outlined-basic" label="Price" variant="outlined" type="number" value={priceInput} onChange={(event) => setPriceInput(event.target.value)}/>
                   <TextField className={styles.textField} id="outlined-basic" label="Phone" variant="outlined" type="tel" value={phoneInput} onChange={(event) => setPhoneInput(event.target.value)}/>
               </Col>
             </Row>
