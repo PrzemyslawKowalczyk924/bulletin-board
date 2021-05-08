@@ -11,7 +11,7 @@ export const initialState = {
         source: 'https://images.unsplash.com/photo-1618160458187-085fbe2064b2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
         intro: 'This message is made by initialState.js component, and render fine. So Im happy',
         title: '<strong>Published:</strong>',
-        cost: 100,
+        cost: '100',
         status: 'draft',
         dateOfPublication: '07.03.1989',
         dateOfActualizaction: '03.05.2012',

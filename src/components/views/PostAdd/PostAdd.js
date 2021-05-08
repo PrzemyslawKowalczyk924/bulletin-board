@@ -49,7 +49,7 @@ const PostAdd = ({addPost}) => {
   
   return (
     <div className={styles.root}>
-      <form className={styles.root} noValidate autoComplete="off" onSubmit={(event) => handleSubmit(event)} >
+      <form className={styles.root} noValidate autoComplete="off" onSubmit={handleSubmit} >
         <Grid>
           <PageTitle text={'Add New Post'} />
           <div>

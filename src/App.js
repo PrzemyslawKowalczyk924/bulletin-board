@@ -10,7 +10,7 @@ import { store } from './redux/store';
 import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import Homepage from './components/views/Homepage/HomepageContainer';
 import Post from './components/views/Post/PostContainer';
-import PostEdit from './components/views/PostEdit/PostEdit';
+import PostEdit from './components/views/PostEdit/PostEditContainer';
 import PostAdd from './components/views/PostAdd/PostAddContainer';
 import { NotFound } from './components/views/NotFound/NotFound';
 

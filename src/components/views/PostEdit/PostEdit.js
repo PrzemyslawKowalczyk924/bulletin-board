@@ -14,17 +14,18 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
+import { AlternateEmailRounded, ThumbDownRounded } from '@material-ui/icons';
 
 
-const PostEdit = ({editPost}) => {
-
+const PostEdit = ({editPost, id, text, source, intro, title, name, cost, phone, town, status, dateOfPublication, dateOfActualizaction, email}) => {
+//debugger;
   
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const post = {
-      id: shortid(),
+      id: id,
       text: textInput,
       source: sourceInput,
       intro: introInput,
@@ -41,14 +42,14 @@ const PostEdit = ({editPost}) => {
     console.log('warrning', event);
   }
 
-  const [textInput, setTextInput] = useState('');
-  const [sourceInput, setSourceInput] = useState('');
-  const [introInput, setIntroInput] = useState('');
-  const [costInput, setCostInput] = useState('');
-  const [townInput, setTownInput] = useState('');
-  const [nameInput, setNameInput] = useState('');
-  const [phoneInput, setPhoneInput] = useState('');
-  const [emailInput, setEmailInput] = useState('');
+  const [textInput, setTextInput] = useState(text);
+  const [sourceInput, setSourceInput] = useState(source);
+  const [introInput, setIntroInput] = useState(intro);
+  const [costInput, setCostInput] = useState(cost);
+  const [townInput, setTownInput] = useState(town);
+  const [nameInput, setNameInput] = useState(name);
+  const [phoneInput, setPhoneInput] = useState(phone);
+  const [emailInput, setEmailInput] = useState(email);
   
   return (
     <div className={styles.root}>
@@ -60,7 +61,7 @@ const PostEdit = ({editPost}) => {
         </Grid>
         <DetailsBox>
           <DetailsImage>
-            <input accept="image/*" className={styles.input} id="icon-button-file" type="file" value={sourceInput} onChange={(event) => setSourceInput(event.target.value)} />
+            {/* <input accept="image/*" className={styles.input} id="icon-button-file" type="file" value={sourceInput} onChange={(event) => setSourceInput(event.target.value)} /> */}
             <label htmlFor="icon-button-file">
               <IconButton color="primary" aria-label="upload picture" component="span">
                 <PhotoCamera />
@@ -84,7 +85,7 @@ const PostEdit = ({editPost}) => {
             </Row>
           </Grid>
         </DetailsBox>
-        <Button className={styles.button} variant="contained">Add Post</Button>
+        <Button className={styles.button} type="submit" variant="contained">Add Post</Button>
       </form>
     </div>
   );

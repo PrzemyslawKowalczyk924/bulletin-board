@@ -82,10 +82,6 @@ export const reducer = (statePart = [], action = {}) => {
       };
     }
     case ADD_POST: {
-      /* const posts = statePart.posts.concat(action.payload);
-      return {
-        ...statePart, posts
-      }  */
       return {
         ...statePart,
         data: [
@@ -93,18 +89,25 @@ export const reducer = (statePart = [], action = {}) => {
           action.payload,
         ],
       };
-      //return [...statePart, action.payload]
     }
     case EDIT_POST: {
-      return statePart.data.map(element => {
-        if (element.id !== action.payload.id) {
-          return element;
+      const updatedData = statePart.data.map((post) => {
+        if (post.id === action.payload.id) {
+          return {
+            ...action.payload,
+          }
+        } else {
+          return post
         }
-
-        const {...statePart} = action.payload;
-
-        return ({...statePart})
       });
+
+        return {
+          ...statePart,
+          data: [
+            ...updatedData,
+          ],
+        };
+       
     }
     default:
       return statePart;
