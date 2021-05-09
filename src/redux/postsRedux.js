@@ -1,4 +1,4 @@
-//import axios from 'axios';
+import axios from 'axios';
 
 /* selectors */
 export const getAll = ({posts}) => posts.data;
@@ -49,6 +49,24 @@ export const EditPostRequest = (post) => {
     dispatch(editPost(post));
   }
 }
+
+export const fetchPublished = () => {
+  return (dispatch, getState) => {
+    dispatch(fetchStarted());
+    const { posts } = getState();
+
+    console.log('its warking!', posts);
+    axios
+      .get('http://localhost:8000/api/posts')
+      .then(res => {
+        /* if(posts.date && posts.loading.active) {} */
+        dispatch(fetchSuccess(res.data));
+      })
+      .catch(err => {
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
 
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {

@@ -11,11 +11,11 @@ import Paper from '@material-ui/core/Paper';
 /* import PageTitle from '../../common/PageTitle/PageTitle';
 import {Grid, Row, Col} from 'react-flexbox-grid'; */
 
-const Homepage = ( {posts} ) => (
+const Homepage = ( {posts, fetchPublishedPosts} ) => (
   <div className={styles.root}>
-    {posts.length ? posts.map(post => (
+    {fetchPublishedPosts.length ? fetchPublishedPosts.map(post => (
       <Paper elevation={3} className={styles.paper}>  
-        <PostsSummary key={post.id} {...post} />
+        <PostsSummary key={post._id} {...post} />
       </Paper>  
     )) : (
       <p>Sorry, no results found. Try adjusting the filters.</p>
