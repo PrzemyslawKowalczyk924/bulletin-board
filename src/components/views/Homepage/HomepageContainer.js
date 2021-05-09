@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchPublishedPosts: () => dispatch(fetchPublished()),
+fetchPublishedPosts: () => dispatch(fetchPublished()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

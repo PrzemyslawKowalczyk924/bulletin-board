@@ -55,16 +55,18 @@ export const fetchPublished = () => {
     dispatch(fetchStarted());
     const { posts } = getState();
 
-    console.log('its warking!', posts);
+    if(posts.data.length || posts.loading.active === false) {
+      dispatch(fetchStarted());
+    }
+    
     axios
-      .get('http://localhost:8000/api/posts')
-      .then(res => {
-        /* if(posts.date && posts.loading.active) {} */
-        dispatch(fetchSuccess(res.data));
-      })
-      .catch(err => {
-        dispatch(fetchError(err.message || true));
-      });
+    .get('http://localhost:8000/api/posts')
+    .then(res => {
+      dispatch(fetchSuccess(res.data));
+    })
+    .catch(err => {
+      dispatch(fetchError(err.message || true));
+    });
   };
 };
 
