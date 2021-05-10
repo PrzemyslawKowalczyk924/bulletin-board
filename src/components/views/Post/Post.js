@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import HTMLParser from 'react-html-parser';
 import {Link} from 'react-router-dom';
@@ -16,8 +16,13 @@ import List from '../../common/List/List';
 import ListItem from '../../common/ListItem/ListItem';
 import Icon from '../../common/Icon/Icon';
 
-const Post = ({ 
-  id, user, title, photo, text, author, price, location, status, phone, created, updated, email }) => {
+const Post = ({getPostById, 
+  _id, user, title, photo, text, author, price, location, status, phone, created, updated, email }) => {
+
+  useEffect(() => {
+    getPostById();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className={styles.root}>
@@ -30,7 +35,7 @@ const Post = ({
         </DetailsImage>
         <Grid>
           <Row>
-          {user.status ? <Link to={`/post/${id}/edit`} className={styles.link}>
+          {user.status ? <Link to={`/post/${_id}/edit`} className={styles.link}>
               <Icon name={'cog'}/>
             </Link> : null}
             <Col md={12} lg={4}>

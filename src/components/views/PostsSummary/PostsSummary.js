@@ -5,13 +5,13 @@ import {Col} from 'react-flexbox-grid';
 import {Link} from 'react-router-dom';
 //import TripPrice from '../../features/TripPrice';
 
-const PostsSummary = ({id, author, photo, title, created}) => (
+const PostsSummary = ({_id, author, photo, title, created}) => (
   <Col xs={12} sm={12} lg={12} className={styles.column}>
-    <Link to={`/post/${id}`} className={styles.link}>
+    <Link to={`/post/${_id}`} className={styles.link}>
       <article className={styles.component}>
         <img src={photo} alt={'some view'} />
         <h3 className={styles.title}>{title}</h3>
-        <h2 className={styles.title}>{author}</h2>
+        <h2 className={styles.author}>{author}</h2>
         <div className={styles.details}>
           <span>{created}</span>
           {/* <TripPrice cost={cost} icon=''  /> */}

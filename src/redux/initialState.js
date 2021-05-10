@@ -5,7 +5,7 @@ export const initialState = {
   },
   posts: {
     data: [
-      {
+     /*  {
         id: '0',
         author: 'Clint Eastwood',
         created: '07.03.1989',
@@ -88,11 +88,12 @@ export const initialState = {
         phone: '3441903',
         location: 'New York',
         email: 'amanda.doe@example.com',
-      },
+      }, */
     ],
     loading: {
       active: false,
       error: false,
     },
+    singlePost: {},
   },
 };

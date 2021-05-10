@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 /* import PropTypes from 'prop-types'; */
 import {Grid, Row, Col} from 'react-flexbox-grid';
 
@@ -13,14 +13,31 @@ import Button from '@material-ui/core/Button';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 
-const PostEdit = ({editPost, id, title, photo, text, author, price, phone, location, status, created, updated, email}) => {
+const PostEdit = ({getPostById, editPost, _id, title, photo, text, author, price, phone, location, status, created, updated, email}) => {
 //debugger;
+
+useEffect(() => {
+  getPostById();
+  //eslint-disable-next-line react-hooks/exhaustive-deps
+}, [])
+
+//this useEffect will work always when [_id] parameter is on
+useEffect(() => {
+  setTitleInput(title);
+  setPhotoInput(photo);
+  setTextInput(text);
+  setPriceInput(price);
+  setLocationInput(location);
+  setAuthorInput(author);
+  setPhoneInput(phone);
+  setEmailInput(email);
+}, [_id]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const post = {
-      id: id,
+      _id: _id,
       title: titleInput,
       photo: photoInput,
       text: textInput,
@@ -62,7 +79,7 @@ const PostEdit = ({editPost, id, title, photo, text, author, price, phone, locat
                 <PhotoCamera />
               </IconButton>
             </label>
-            <SideImage source={'https://images.unsplash.com/photo-1620295094360-bbed482aaaf8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'} />
+            <SideImage source={photo} />
           </DetailsImage>
           <Grid>
             <Row>
