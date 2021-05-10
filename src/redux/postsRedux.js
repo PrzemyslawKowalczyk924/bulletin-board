@@ -14,7 +14,6 @@ const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
 const ADD_POST = createActionName('ADD_POST');
 const EDIT_POST = createActionName('EDIT_POST');
-const DELETE_POST = createActionName('DELETE_POST');
 const UPDATE_SINGLE_POST = createActionName('UPDATE_SINGLE_POST');
 const UPDATE_ALL_POSTS = createActionName('UPDATE_ALL_POSTS');
 
@@ -24,28 +23,10 @@ export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
 export const addPost = payload => ({ payload, type: ADD_POST });
 export const editPost = payload => ({ payload, type: EDIT_POST });
-export const deletePost = payload => ({ payload, type: DELETE_POST });
 export const updateSinglePost = payload => ({ payload, type: UPDATE_SINGLE_POST });
 export const updateAllPosts = payload => ({ payload, type: UPDATE_ALL_POSTS });
 
 /* thunk creators */
-
-export const addPostRequest = (post) => {
-  return (dispatch) => {
-   /*  axios.post('http://localhost:3000/', { post })
-    .then(response => {
-      console.log(response);
-      dispatch({
-        type: 'ADD_POST',
-        payload: response.data
-      })
-    })
-    .catch(error => {
-      console.log(error);
-    }); */
-    dispatch(addPost(post));
-  }
-}
 
 export const EditPostRequest = (post) => {
   return (dispatch) => {
@@ -85,6 +66,17 @@ export const fetchPublishedById = (id) => {
     .catch(err => {
       dispatch(fetchError(err.message || true));
     });
+  }
+}
+
+export const addPostRequest = (post) => {
+  return async (dispatch) => {
+    dispatch(fetchStarted());
+    try {
+      await axios.post('http://localhost:8000/api/posts', post);
+    } catch(err) {
+      dispatch(fetchError(err.message || true));
+    };
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import shortid from 'shortid';
@@ -16,12 +16,13 @@ import IconButton from '@material-ui/core/IconButton';
 
 
 const PostAdd = ({addPost}) => {
+  const [post, setPost] = useState({});
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    let post = {
-      id: shortid(),
+    setPost({
+      _id: shortid(),
       title: titleInput,
       photo: photoInput,
       text: textInput,
@@ -33,9 +34,8 @@ const PostAdd = ({addPost}) => {
       author: authorInput,
       location: locationInput,   
       phone: phoneInput,
-    }
-    addPost(post);
-    console.log('warrning', event);
+    });
+    //addPost(post);
   }
 
   const [titleInput, setTitleInput] = useState('');
@@ -47,6 +47,10 @@ const PostAdd = ({addPost}) => {
   const [phoneInput, setPhoneInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
   
+  useEffect(() => {
+    addPost(post);
+  }, [post]);
+
   return (
     <div className={styles.root}>
       <form className={styles.root} noValidate autoComplete="off" onSubmit={handleSubmit} >
