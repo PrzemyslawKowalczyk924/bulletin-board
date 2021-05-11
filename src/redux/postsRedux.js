@@ -70,15 +70,17 @@ export const fetchPublishedById = (id) => {
 }
 
 export const addPostRequest = (post) => {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch(fetchStarted());
-    try {
-      await axios.post('http://localhost:8000/api/posts', post);
-    } catch(err) {
+    axios.post("http://localhost:8000/api/posts/add", post)
+      .then(() => {
+        dispatch(addPost(post));
+      })  
+    .catch((err) => {
       dispatch(fetchError(err.message || true));
-    };
-  }
-}
+    });
+  };
+};
 
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {

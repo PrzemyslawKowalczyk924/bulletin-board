@@ -29,15 +29,20 @@ router.get('/posts/:id', async (req, res) => {
 });
 
 router.post('/posts/add', async (req, res) => {
-  const { _id, author, created, updated, status, title, text, photo, price, phone, location } = req.body;
+  const { author, created, updated, status, title, text, photo, price, phone, location } = req.body;
+  try {
     const newPost = new Post({ 
-      _id: _id, author: author, created: created, 
+      author: author, created: created, 
       updated: updated, status: status, 
       title: title, text: text, 
       photo: photo, price: price, 
       phone: phone, location: location });
     await newPost.save();
     res.json(newPost);
+  }
+  catch(err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
