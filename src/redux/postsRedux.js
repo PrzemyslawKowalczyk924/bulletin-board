@@ -75,6 +75,7 @@ export const addPostRequest = (post) => {
     axios.post("http://localhost:8000/api/posts/add", post)
       .then(() => {
         dispatch(addPost(post));
+        dispatch(fetchSuccess());
       })  
     .catch((err) => {
       dispatch(fetchError(err.message || true));

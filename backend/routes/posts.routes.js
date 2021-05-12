@@ -29,20 +29,25 @@ router.get('/posts/:id', async (req, res) => {
 });
 
 router.post('/posts/add', async (req, res) => {
-  const { author, created, updated, status, title, text, photo, price, phone, location } = req.body;
+  console.log(req.fields)
+  console.log(req.files)
+  res.json('blabla')
+ /*  const { author, created, updated, status, title, text, price, phone, location } = req.fields;
+  const photo = req.files.photo;
+  const fileName = photo.path.split('/').slice(-1)[0];
   try {
     const newPost = new Post({ 
       author: author, created: created, 
       updated: updated, status: status, 
       title: title, text: text, 
-      photo: photo, price: price, 
+      photo: fileName, price: price, 
       phone: phone, location: location });
     await newPost.save();
     res.json(newPost);
   }
   catch(err) {
     res.status(500).json(err);
-  }
+  } */
 });
 
 module.exports = router;

@@ -16,26 +16,25 @@ import IconButton from '@material-ui/core/IconButton';
 
 
 const PostAdd = ({addPost}) => {
-  const [post, setPost] = useState({});
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    setPost({
+    let post = ({
       _id: shortid(),
       title: titleInput,
       photo: photoInput,
       text: textInput,
       price: priceInput,
-     /*  status: ,
-      created: ,
+      status: 'published',
+      /* created: ,
       updated: , */
       email: emailInput,
       author: authorInput,
       location: locationInput,   
       phone: phoneInput,
     });
-    //addPost(post);
+    addPost(post);
   }
 
   const [titleInput, setTitleInput] = useState('');
@@ -46,10 +45,6 @@ const PostAdd = ({addPost}) => {
   const [authorInput, setAuthorInput] = useState('');
   const [phoneInput, setPhoneInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
-  
-  useEffect(() => {
-    addPost(post);
-  }, [post]);
 
   return (
     <div className={styles.root}>
@@ -61,7 +56,7 @@ const PostAdd = ({addPost}) => {
         </Grid>
         <DetailsBox>
           <DetailsImage>
-            <input accept="image/*" className={styles.input} id="icon-button-file" type="file" value={photoInput} onChange={(event) => setPhotoInput(event.target.value)} />
+            <input name="photo" accept="image/*" className={styles.input} id="icon-button-file" type="file" value={photoInput} onChange={(event) => setPhotoInput(event.target.value)} />
             <label htmlFor="icon-button-file">
               <IconButton color="primary" aria-label="upload picture" component="span">
                 <PhotoCamera />
