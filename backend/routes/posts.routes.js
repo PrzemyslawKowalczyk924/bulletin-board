@@ -29,10 +29,7 @@ router.get('/posts/:id', async (req, res) => {
 });
 
 router.post('/posts/add', async (req, res) => {
-  console.log(req.fields)
-  console.log(req.files)
-  res.json('blabla')
- /*  const { author, created, updated, status, title, text, price, phone, location } = req.fields;
+  const { author, created, updated, status, title, text, price, phone, location } = req.fields;
   const photo = req.files.photo;
   const fileName = photo.path.split('/').slice(-1)[0];
   try {
@@ -47,7 +44,7 @@ router.post('/posts/add', async (req, res) => {
   }
   catch(err) {
     res.status(500).json(err);
-  } */
+  }
 });
 
 module.exports = router;

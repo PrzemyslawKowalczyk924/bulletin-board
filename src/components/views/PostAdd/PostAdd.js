@@ -37,6 +37,12 @@ const PostAdd = ({addPost}) => {
     addPost(post);
   }
 
+  const setPhoto = (e) => {
+    e.preventDefault();
+    const file = Array.from(e.target.files)[0];
+    setPhotoInput(file);
+  }
+
   const [titleInput, setTitleInput] = useState('');
   const [photoInput, setPhotoInput] = useState('');
   const [textInput, setTextInput] = useState('');
@@ -56,7 +62,7 @@ const PostAdd = ({addPost}) => {
         </Grid>
         <DetailsBox>
           <DetailsImage>
-            <input name="photo" accept="image/*" className={styles.input} id="icon-button-file" type="file" value={photoInput} onChange={(event) => setPhotoInput(event.target.value)} />
+            <input name="photo" accept="image/*" className={styles.input} id="icon-button-file" type="file" onChange={setPhoto} />
             <label htmlFor="icon-button-file">
               <IconButton color="primary" aria-label="upload picture" component="span">
                 <PhotoCamera />
