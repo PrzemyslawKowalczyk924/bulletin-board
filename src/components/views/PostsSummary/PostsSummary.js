@@ -9,7 +9,7 @@ const PostsSummary = ({_id, author, photo, title, created}) => (
   <Col xs={12} sm={12} lg={12} className={styles.column}>
     <Link to={`/post/${_id}`} className={styles.link}>
       <article className={styles.component}>
-        <img src={photo} alt={'some view'} />
+        <img src={(photo.includes('http')) ? photo : `http://localhost:8000/uploads/${photo}`} alt={'some view'} />
         <h3 className={styles.title}>{title}</h3>
         <h2 className={styles.author}>{author}</h2>
         <div className={styles.details}>
