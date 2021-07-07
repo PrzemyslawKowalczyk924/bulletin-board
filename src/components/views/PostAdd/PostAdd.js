@@ -37,11 +37,11 @@ const PostAdd = ({addPost}) => {
     addPost(post);
   }
 
-  const setPhoto = (e) => {
+/*   const setPhoto = (e) => {
     e.preventDefault();
     const file = Array.from(e.target.files)[0];
-    setPhotoInput(file);
-  }
+    setphotoInput(file);
+  } */
 
   const [titleInput, setTitleInput] = useState('');
   const [photoInput, setPhotoInput] = useState('');
@@ -51,6 +51,30 @@ const PostAdd = ({addPost}) => {
   const [authorInput, setAuthorInput] = useState('');
   const [phoneInput, setPhoneInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
+  const [preview, setPreview] = useState();
+
+  useEffect(() => {
+    if (!photoInput) {
+        setPreview(undefined)
+        return
+    }
+
+    const objectUrl = URL.createObjectURL(photoInput)
+    setPreview(objectUrl)
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl)
+}, [photoInput])
+
+const onSelectFile = e => {
+    if (!e.target.files || e.target.files.length === 0) {
+        setPhotoInput(undefined)
+        return
+    }
+
+    // I've kept this example simple by using the first image instead of multiple
+    setPhotoInput(e.target.files[0])
+}
 
   return (
     <div className={styles.root}>
@@ -62,13 +86,13 @@ const PostAdd = ({addPost}) => {
         </Grid>
         <DetailsBox>
           <DetailsImage>
-            <input name="photo" accept="image/*" className={styles.input} id="icon-button-file" type="file" onChange={setPhoto} />
+            <input name="photo" accept="image/*" className={styles.input} id="icon-button-file" type="file" onChange={onSelectFile} />
+            {photoInput &&  <img src={preview} /> }
             <label htmlFor="icon-button-file">
               <IconButton color="primary" aria-label="upload picture" component="span">
                 <PhotoCamera />
               </IconButton>
             </label>
-            <SideImage source={'https://images.unsplash.com/photo-1620295094360-bbed482aaaf8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'} />
           </DetailsImage>
           <Grid>
             <Row>
